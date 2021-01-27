@@ -1,0 +1,22 @@
+{
+  "name": "GeoXEne",
+  "version": "1.0.0",
+  "description": "Geocoding through transmission or emulation",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Aurélien Bénel",
+    "url": "https://github.com/benel"
+  },
+  "contributors": [{
+    "name": "Mathieu Drache",
+    "url": "https://github.com/dramathieu"
+  }],
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
