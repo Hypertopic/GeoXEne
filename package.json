@@ -10,10 +10,12 @@
     "name": "Aurélien Bénel",
     "url": "https://github.com/benel"
   },
-  "contributors": [{
-    "name": "Mathieu Drache",
-    "url": "https://github.com/dramathieu"
-  }],
+  "contributors": [
+    {
+      "name": "Mathieu Drache",
+      "url": "https://github.com/dramathieu"
+    }
+  ],
   "license": "AGPL-3.0-only",
   "dependencies": {
     "cors": "^2.8.5",
