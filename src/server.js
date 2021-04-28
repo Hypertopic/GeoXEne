@@ -25,10 +25,10 @@ const geocoding = {
 };
 
 app.use(cors('http://localhost'));
-app.get('/json', function(req, res) {
+app.get('/', function(req, res) {
   let location = geocoding[req.query.address];
   let results = (location) ? [{geometry: {location}}] : [];
   res.json({results});
 });
 app.listen(3000);
-console.log('Test it on http://localhost:3000/json?address=Tombe+2,+Pompeion,+Kerameikos');
+console.log('Test it on http://localhost:3000/?address=Tombe+2,+Pompeion,+Kerameikos');
