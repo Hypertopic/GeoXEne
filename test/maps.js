@@ -41,6 +41,7 @@ function testGeoding(api, map) {
   for (let i = 1; i < 30; i++) {
     putAddressOnMap(api, `Tombe ${i}, Pompeion, Kerameikos`, map);
   }
+  putAddressOnMap(api, 'Mur de thémistocle, Kerameikos', map);
 }
 
 function initMap() {

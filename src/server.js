@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const proxy = require('express-http-proxy');
 const geocoding = {
   "Tombe 2, Pompeion, Kerameikos": { lat: 37.97824388117687, lng: 23.718648807908984 },
   "Tombe 3, Pompeion, Kerameikos": { lat: 37.97821996444386, lng: 23.71865999861794 },
@@ -25,10 +26,22 @@ const geocoding = {
 };
 
 app.use(cors('http://localhost'));
-app.get('/', function(req, res) {
+
+let emulate = (req, res, next) => {
   let location = geocoding[req.query.address];
-  let results = (location) ? [{geometry: {location}}] : [];
-  res.json({results});
+  if (location) {
+    let results = (location) ? [{geometry: {location}}] : [];
+    res.json({results});
+  } else {
+    next();
+  }
+}
+
+let transmit = proxy('https://maps.googleapis.com', {
+  proxyReqPathResolver: (x) => `/maps/api/geocode/json${x.url.slice(1)}`
 });
+
+app.get('/', emulate, transmit);
+
 app.listen(3000);
 console.log('Test it on http://localhost:3000/?address=Tombe+2,+Pompeion,+Kerameikos');
