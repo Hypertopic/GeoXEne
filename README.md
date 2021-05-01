@@ -1,12 +1,8 @@
 # GeoXEne – Geocoding through transmission or emulation
 
-0. Install GeoXEne:
-
-        npm install
-
 1. Start the service:
 
-        npm start
+        docker run -d -p 3000:3000 benel/geoxene
 
 2. Start the test frontend:
 
