@@ -31,7 +31,7 @@ app.use(cors('http://localhost'));
 
 let emulate = (req, res, next) => {
   let location = geocoding[req.query.address];
-  if (location) {
+  if (location || !req.query.address) {
     let results = (location) ? [{geometry: {location}}] : [];
     res.json({results});
   } else {
