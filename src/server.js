@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const proxy = require('express-http-proxy');
 const cache = require('apicache').middleware;
+const md5 = require('crypto-js/md5');
+const base64 = require ('crypto-js/enc-base64');
 
 const geocoding = {
   "Tombe 2, Nécropole au Nord de l'Eridanos, Kerameikos": { lat: 37.97824388117687, lng: 23.718648807908984 },
@@ -30,10 +32,13 @@ const geocoding = {
 
 app.use(cors('http://localhost'));
 
+let hash = (x) => base64.stringify(md5(x));
+
 let emulate = (req, res, next) => {
   let location = geocoding[req.query.address];
   if (location || !req.query.address) {
-    let results = (location) ? [{geometry: {location}}] : [];
+    let place_id = hash(req.query.address);
+    let results = (location) ? [{geometry: {location}, place_id}] : [];
     res.json({results});
   } else {
     next();
