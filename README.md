@@ -6,6 +6,6 @@
 
 2. Start the test frontend:
 
-        npx serve --listen 80 test
+        npx serve --listen 80 public
 
 3. Open <http://localhost/>
