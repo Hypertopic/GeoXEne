@@ -73,7 +73,10 @@ let transmit = proxy('https://maps.googleapis.com', {
   proxyReqPathResolver: (x) => `/maps/api/geocode${x.url}`
 });
 
+let sendAddresses = (_, res) => res.json(Object.keys(geocoding));
+
 app.get('/json', cache('15 minutes'), emulate, transmit);
+app.get('/addresses', sendAddresses);
 app.use(express.static('public'));
 
 app.listen(3000);

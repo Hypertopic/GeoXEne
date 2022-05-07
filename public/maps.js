@@ -2,7 +2,7 @@ const settings = {
   key: 'AIzaSyAtl1YBvhlhE_jJp-Bl1kVYigPaJfiti10',
   coverage: {
     center: {lat:  37.977950, lng: 23.718200},
-    zoom: 19,
+    zoom: 18,
     mapTypeId : 'satellite'
   },
   overlays: [
@@ -27,28 +27,24 @@ let putOverlaysOnMap = (map) => settings.overlays.map(x => new google.maps.Groun
     x.addListener('click', showLocation);
   });
 
-let putAddressOnMap = (api, address, map) => fetch(`${api}json?address=${address}&key=${settings.key}`)
+let getLocation = (address) => fetch(`/json?address=${address}&key=${settings.key}`)
   .then(x => x.json())
-  .then(x => {
-    if (x.results[0]) {
-      new google.maps.Marker({position: x.results[0].geometry.location, map})
-    } else {
-      console.warn(`"${address}" not found!`);
-    }
-  });
+  .then(x => x.results[0].geometry.location)
+  .catch(x => null);
 
-function testGeoding(api, map) {
-  for (let i = 2; i < 22; i++) {
-    putAddressOnMap(api, `Tombe ${i}, Nécropole au Nord de l'Eridanos, Kerameikos`, map);
-  }
-  putAddressOnMap(api, 'Mur de thémistocle, Kerameikos', map);
+function putAddressesOnMap(map) {
+  fetch('/addresses')
+    .then(x => x.json())
+    .then(x => Promise.all(x.map(getLocation)))
+    .then(x => x.forEach(position => {
+      if (position) {
+        new google.maps.Marker({position, map});
+      }
+    }));
 }
 
 function initMap() {
-  let map1 = createMap('map1');
-  let map2 = createMap('map2');
-  putOverlaysOnMap(map1);
-  putOverlaysOnMap(map2);
-  testGeoding('https://maps.googleapis.com/maps/api/geocode/', map1);
-  testGeoding('http://localhost:3000/', map2);
+  let map = createMap('map');
+  putOverlaysOnMap(map);
+  putAddressesOnMap(map);
 }
