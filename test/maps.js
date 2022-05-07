@@ -38,8 +38,8 @@ let putAddressOnMap = (api, address, map) => fetch(`${api}?address=${address}&ke
   });
 
 function testGeoding(api, map) {
-  for (let i = 1; i < 30; i++) {
-    putAddressOnMap(api, `Tombe ${i}, Pompeion, Kerameikos`, map);
+  for (let i = 2; i < 22; i++) {
+    putAddressOnMap(api, `Tombe ${i}, Nécropole au Nord de l'Eridanos, Kerameikos`, map);
   }
   putAddressOnMap(api, 'Mur de thémistocle, Kerameikos', map);
 }
