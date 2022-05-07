@@ -74,6 +74,7 @@ let transmit = proxy('https://maps.googleapis.com', {
 });
 
 app.get('/json', cache('15 minutes'), emulate, transmit);
+app.use(express.static('public'));
 
 app.listen(3000);
-console.log("Test it on http://localhost:3000/json?address=Société académique de l'Aube, Troyes");
+console.log("Test it on http://localhost:3000/");

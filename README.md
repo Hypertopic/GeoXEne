@@ -4,8 +4,4 @@
 
         docker run -d -p 3000:3000 benel/geoxene
 
-2. Start the test frontend:
-
-        npx serve --listen 80 public
-
-3. Open <http://localhost/>
+2. Open <http://localhost:3000/>
