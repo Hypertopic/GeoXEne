@@ -70,10 +70,10 @@ let emulate = (req, res, next) => {
 }
 
 let transmit = proxy('https://maps.googleapis.com', {
-  proxyReqPathResolver: (x) => `/maps/api/geocode/json${x.url.slice(1)}`
+  proxyReqPathResolver: (x) => `/maps/api/geocode${x.url}`
 });
 
-app.get('/', cache('15 minutes'), emulate, transmit);
+app.get('/json', cache('15 minutes'), emulate, transmit);
 
 app.listen(3000);
-console.log("Test it on http://localhost:3000/?address=Société académique de l'Aube, Troyes");
+console.log("Test it on http://localhost:3000/json?address=Société académique de l'Aube, Troyes");

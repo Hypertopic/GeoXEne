@@ -27,7 +27,7 @@ let putOverlaysOnMap = (map) => settings.overlays.map(x => new google.maps.Groun
     x.addListener('click', showLocation);
   });
 
-let putAddressOnMap = (api, address, map) => fetch(`${api}?address=${address}&key=${settings.key}`)
+let putAddressOnMap = (api, address, map) => fetch(`${api}json?address=${address}&key=${settings.key}`)
   .then(x => x.json())
   .then(x => {
     if (x.results[0]) {
@@ -49,6 +49,6 @@ function initMap() {
   let map2 = createMap('map2');
   putOverlaysOnMap(map1);
   putOverlaysOnMap(map2);
-  testGeoding('https://maps.googleapis.com/maps/api/geocode/json', map1);
+  testGeoding('https://maps.googleapis.com/maps/api/geocode/', map1);
   testGeoding('http://localhost:3000/', map2);
 }
