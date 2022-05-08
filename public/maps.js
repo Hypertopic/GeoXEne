@@ -1,8 +1,13 @@
 let createMap = (id) => new google.maps.Map(document.getElementById(id), settings.coverage);
 
+let fillForm = (latitude, longitude, title = '') => {
+  document.getElementById('lat').value = latitude;
+  document.getElementById('long').value = longitude;
+  document.getElementById('title').value = title;
+}
+
 let showLocation = (x) => {
-  document.getElementById('lat').value = x.latLng.lat();
-  document.getElementById('long').value = x.latLng.lng();
+  fillForm(x.latLng.lat(), x.latLng.lng());
 }
 
 let putOverlaysOnMap = (map) => settings.overlays.map(x => new google.maps.GroundOverlay(...x))
@@ -24,7 +29,8 @@ function putAddressesOnMap(map) {
     .then(x => Promise.all(x.map(getLocation)))
     .then(x => x.forEach(({title, position}) => {
       if (position) {
-        new google.maps.Marker({position, title, map});
+        new google.maps.Marker({position, title, map})
+          .addListener('click', x => fillForm(position.lat, position.lng, title));
       }
     }));
 }
