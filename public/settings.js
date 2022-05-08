@@ -1,6 +1,7 @@
 const settings = {
   key: document.currentScript.getAttribute('key'),
   coverage: {
+    draggableCursor: 'pointer',
     center: {lat: 37.977950, lng: 23.718200},
     zoom: 18,
     mapTypeId: 'satellite'

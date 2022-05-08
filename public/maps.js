@@ -29,6 +29,7 @@ function putAddressesOnMap(map) {
 
 function initMap() {
   let map = createMap('map');
+  map.addListener('click', showLocation);
   putOverlaysOnMap(map);
   putAddressesOnMap(map);
 }
