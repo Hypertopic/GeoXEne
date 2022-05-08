@@ -13,16 +13,18 @@ let putOverlaysOnMap = (map) => settings.overlays.map(x => new google.maps.Groun
 
 let getLocation = (address) => fetch(`/json?address=${address}&key=${settings.key}`)
   .then(x => x.json())
-  .then(x => x.results[0].geometry.location)
-  .catch(x => null);
+  .then(x => ({
+    title: address,
+    position: x.results[0].geometry.location
+  }));
 
 function putAddressesOnMap(map) {
   fetch('/addresses')
     .then(x => x.json())
     .then(x => Promise.all(x.map(getLocation)))
-    .then(x => x.forEach(position => {
+    .then(x => x.forEach(({title, position}) => {
       if (position) {
-        new google.maps.Marker({position, map});
+        new google.maps.Marker({position, title, map});
       }
     }));
 }
