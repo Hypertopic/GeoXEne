@@ -1,6 +1,9 @@
 let createMap = (id) => new google.maps.Map(document.getElementById(id), settings.coverage);
 
-let showLocation = (x) => console.log(x.latLng.toJSON());
+let showLocation = (x) => {
+  document.getElementById('lat').value = x.latLng.lat();
+  document.getElementById('long').value = x.latLng.lng();
+}
 
 let putOverlaysOnMap = (map) => settings.overlays.map(x => new google.maps.GroundOverlay(...x))
   .map(x => {

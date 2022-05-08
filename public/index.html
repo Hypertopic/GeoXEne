@@ -11,7 +11,7 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       .map {
-        height: 100%;
+        height: 80%;
       }
 
       /* Optional: Makes the sample page fill the window. */
@@ -28,5 +28,13 @@
   <body>
     <h1>GeoXEne</h1>
     <div id="map" class="map"></div>
+    <form>
+      <label>Latitude:
+        <input type="text" id="lat" required />
+      </label>
+      </label>Longitude:
+        <input type="text" id="long" required />
+      </label>
+    </form>
   </body>
 </html>
