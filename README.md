@@ -7,10 +7,12 @@
 
 - node and npm
 - A [Google API key](https://console.cloud.google.com/) authorized for "Geocoding API".
+- SQLite3
 
 ### Installation
 
     npm install
+	sqlite database.db then CREATE TABLE localization (address TEXT PRIMARY KEY, lat INTEGER NOT NULL, lng INTEGER NOT NULL);
 
 ### Start
 
