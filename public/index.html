@@ -21,22 +21,39 @@
         margin: 0;
         padding: 0;
       }
+
+      .submitBtn {
+        padding: 5px 10px;
+        margin: 4px;
+        background-color: #9EDADE;
+        color: black;
+        border: none;
+        border-radius: 8px;
+        transition: 150ms;
+      }
+
+      .submitBtn:hover {
+        background-color: #3F898E;
+        transition: 150ms;
+      }
+
     </style>
     <script src="maps.js"></script>
   </head>
   <body>
     <h1>GeoXEne</h1>
     <div id="map" class="map"></div>
-    <form>
+    <form action="/addresses" method="POST">
       <label>Latitude:
-        <input type="text" id="lat" required />
+        <input type="text" id="lat" name="lat" required />
       </label>
       </label>Longitude:
-        <input type="text" id="long" required />
+        <input type="text" id="long" name="long" required />
       </label>
       </label>Address:
-        <input type="text" id="title" required />
+        <input type="text" id="title" name="title" required />
       </label>
+      <button type="submit" class="submitBtn">Add location</button>
     </form>
   </body>
 </html>

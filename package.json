@@ -19,9 +19,12 @@
   "license": "AGPL-3.0-only",
   "dependencies": {
     "apicache": "^1.6.2",
+    "better-sqlite3": "^7.5.3",
+    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.0.0",
     "express": "^4.17.1",
-    "express-http-proxy": "^1.6.2"
+    "express-http-proxy": "^1.6.2",
+    "sqlite3": "^5.0.8"
   }
 }
